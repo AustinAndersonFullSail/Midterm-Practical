@@ -1,21 +1,27 @@
 #include <iostream>
 
 int GetQuestion();
-bool CheckAnswer(int userAnswer);
+void CheckAnswer(char userAnswer, int question);
 
 int main()
 {
 	int question = GetQuestion();
 
-	std::string answer;
+	char answer;
 	std::cin >> answer;
 
+	system("cls");
+
+	CheckAnswer(answer, question);
+
+	system("pause");
 
 	return 0;
 }
 
 int GetQuestion() {
 
+	srand(time(NULL));
 	int question = rand() % 4;
 
 	if (question == 0) {
@@ -42,6 +48,15 @@ int GetQuestion() {
 	return question;
 }
 
-bool CheckAnswer(int userAnswer) {
+void CheckAnswer(char userAnswer, int question) {
 
+	if (question == 0 && toupper(userAnswer) == 'A' ||
+		question == 1 && toupper(userAnswer) == 'C' ||
+		question == 2 && toupper(userAnswer) == 'B' ||
+		question == 3 && toupper(userAnswer) == 'D') {
+
+		std::cout << "Correct!" << std::endl;
+	}
+	else
+		std::cout << "Wrong!" << std::endl;
 }
